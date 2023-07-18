@@ -1,4 +1,4 @@
-import { EventStreamPubSub } from './index';
+import { EventStream } from './index';
 
 describe('EventStreamPubSub', () => {
   interface CustomKeyboardEvent {
@@ -9,17 +9,18 @@ describe('EventStreamPubSub', () => {
     };
     deselect: () => void;
   }
-  const customKeyboardEventStream = new EventStreamPubSub<CustomKeyboardEvent>();
+  const customKeyboardEventStream = new EventStream<CustomKeyboardEvent>();
 
   const exampleEvent = {
     photo: {
-      width: 50, height: 50,
+      width: 50,
+      height: 50,
       uri: 'some uri',
     },
     deselect: () => {},
   };
   it('should be possible to publish events', () => {
-    customKeyboardEventStream.publish({ event: exampleEvent });
+    customKeyboardEventStream.publish(exampleEvent);
   });
   it('should be possible to subscribe and unsubscribe to/from events', () => {
     const consumer = () => {};
@@ -32,13 +33,13 @@ describe('EventStreamPubSub', () => {
       counter += 1;
     };
     customKeyboardEventStream.subscribe({ consumer });
-    customKeyboardEventStream.publish({ event: exampleEvent });
+    customKeyboardEventStream.publish(exampleEvent);
     expect(counter).toEqual(1);
-    customKeyboardEventStream.publish({ event: exampleEvent });
+    customKeyboardEventStream.publish(exampleEvent);
     expect(counter).toEqual(2);
-    customKeyboardEventStream.publish({ event: exampleEvent });
-    customKeyboardEventStream.publish({ event: exampleEvent });
-    customKeyboardEventStream.publish({ event: exampleEvent });
+    customKeyboardEventStream.publish(exampleEvent);
+    customKeyboardEventStream.publish(exampleEvent);
+    customKeyboardEventStream.publish(exampleEvent);
     expect(counter).toEqual(5);
   });
   it('should find that subscribers are not notified of events that occured before they subscribed', () => {
@@ -46,10 +47,10 @@ describe('EventStreamPubSub', () => {
     const consumer = () => {
       counter += 1;
     };
-    customKeyboardEventStream.publish({ event: exampleEvent });
+    customKeyboardEventStream.publish(exampleEvent);
     customKeyboardEventStream.subscribe({ consumer });
     expect(counter).toEqual(0);
-    customKeyboardEventStream.publish({ event: exampleEvent });
+    customKeyboardEventStream.publish(exampleEvent);
     expect(counter).toEqual(1);
   });
   it('should find that subscribers are not notified about events after they unsubscribe', () => {
@@ -58,21 +59,21 @@ describe('EventStreamPubSub', () => {
       counter += 1;
     };
     customKeyboardEventStream.subscribe({ consumer });
-    customKeyboardEventStream.publish({ event: exampleEvent });
+    customKeyboardEventStream.publish(exampleEvent);
     expect(counter).toEqual(1);
     customKeyboardEventStream.unsubscribe({ consumer });
-    customKeyboardEventStream.publish({ event: exampleEvent });
-    customKeyboardEventStream.publish({ event: exampleEvent });
-    customKeyboardEventStream.publish({ event: exampleEvent });
+    customKeyboardEventStream.publish(exampleEvent);
+    customKeyboardEventStream.publish(exampleEvent);
+    customKeyboardEventStream.publish(exampleEvent);
     expect(counter).toEqual(1); // still only 1
   });
   it('should find that subscribers get the event accurately', () => {
     let foundEvent: any;
-    const consumer = ({ event }: { event: any }) => {
+    const consumer = (event: any) => {
       foundEvent = event;
     };
     customKeyboardEventStream.subscribe({ consumer });
-    customKeyboardEventStream.publish({ event: exampleEvent });
+    customKeyboardEventStream.publish(exampleEvent);
     expect(foundEvent).toEqual(exampleEvent);
   });
 });
