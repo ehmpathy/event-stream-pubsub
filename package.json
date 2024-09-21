@@ -2,7 +2,7 @@
   "name": "event-stream-pubsub",
   "author": "ehmpathy",
   "description": "pubsub pattern for in-memory, stateless event streaming",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "repository": "ehmpathy/event-stream-pubsub",
   "homepage": "https://github.com/ehmpathy/event-stream-pubsub",
   "keywords": [
