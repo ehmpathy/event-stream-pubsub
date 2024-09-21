@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5](https://github.com/ehmpathy/event-stream-pubsub/compare/v0.1.4...v0.1.5) (2024-09-21)
+
+
+### Bug Fixes
+
+* **practs:** bump practs to latest best ([04984ac](https://github.com/ehmpathy/event-stream-pubsub/commit/04984accfd241da852f0012efb14868d5585a386))
+
 ## [0.1.4](https://github.com/ehmpathy/event-stream-pubsub/compare/v0.1.3...v0.1.4) (2024-09-21)
 
 
