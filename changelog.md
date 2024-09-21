@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/ehmpathy/event-stream-pubsub/compare/v0.1.3...v0.1.4) (2024-09-21)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to eventemitter3 for explicit frontend support ([1b99773](https://github.com/ehmpathy/event-stream-pubsub/commit/1b997734cc4aaa464bb6d0feaf97c92dbdfdd55e))
+
 ## [0.1.3](https://github.com/ehmpathy/event-stream-pubsub/compare/v0.1.0...v0.1.3) (2023-07-18)
 
 
