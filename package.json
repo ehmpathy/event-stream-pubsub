@@ -55,6 +55,7 @@
     "postversion": "git push origin HEAD --tags --no-verify"
   },
   "dependencies": {
+    "eventemitter3": "^5.0.1",
     "events": "^3.0.0"
   },
   "devDependencies": {

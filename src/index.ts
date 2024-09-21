@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events';
+import { EventEmitter } from 'eventemitter3';
 
 export type EventStreamConsumer<T> = (event: T) => void;
 export class EventStream<T> {
